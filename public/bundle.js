@@ -897,9 +897,9 @@ function _soat() {
                 scope: "col"
               }, [element.licensePlate]), createElement('td', {
                 scope: "col"
-              }, ["".concat(from.getDay(), "-").concat(from.getMonth(), "-").concat(from.getFullYear())]), createElement('td', {
+              }, ["".concat(from.getDate(), "-").concat(from.getMonth(), "-").concat(from.getFullYear())]), createElement('td', {
                 scope: "col"
-              }, ["".concat(until.getDay(), "-").concat(until.getMonth(), "-").concat(until.getFullYear())])];
+              }, ["".concat(until.getDate(), "-").concat(until.getMonth(), "-").concat(until.getFullYear())])];
               trbody.push(createElement('tr', {}, thbody));
             }
 
