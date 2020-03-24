@@ -1,0 +1,14 @@
+html {
+  box-sizing: border-box;
+  font-size: 3em;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  background-color: blueviolet;
+}
