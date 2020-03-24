@@ -825,7 +825,7 @@ function soat() {
 
 function _soat() {
   _soat = asyncToGenerator( /*#__PURE__*/regenerator.mark(function _callee() {
-    var response, json, thhead, trhead, thead, trbody, i, element, from, until, circle, svg, table, container;
+    var response, json, thhead, trhead, thead, trbody, i, element, from, until, circle, table, title, container;
     return regenerator.wrap(function _callee$(_context) {
       while (1) {
         switch (_context.prev = _context.next) {
@@ -866,37 +866,32 @@ function _soat() {
               scope: "col"
             }, ['Valid until'])];
             trhead = createElement('tr', {}, thhead);
-            thead = createElement('thead', {}, [trhead]);
+            thead = createElement('thead', {
+              "class": "thead-dark"
+            }, [trhead]);
             trbody = [];
 
             for (i = 0; i < json.vehicles.length; i++) {
               element = json.vehicles[i];
               from = new Date(parseInt(element.soatValidFrom, 10));
               until = new Date(parseInt(element.soatValidUntil, 10));
+              console.log(from);
+              console.log(until);
               circle = void 0;
 
-              if (from.getDay == until.getDay && from.getMonth == until.getMonth && from.getFullYear - until.getFullYear == -1) {
-                circle = createElement('circle', {
-                  fill: "green",
-                  cx: 50,
-                  cy: 50,
-                  r: 50
+              if (from.getDate() == until.getDate() && from.getMonth() == until.getMonth() && from.getFullYear() - until.getFullYear() == -1) {
+                circle = createElement('span', {
+                  style: "height: 25px; width: 25px; background-color: green;border-radius: 50%; display: inline-block;"
                 }, []);
               } else {
-                circle = createElement('circle', {
-                  fill: "red",
-                  cx: 50,
-                  cy: 50,
-                  r: 50
+                circle = createElement('span', {
+                  style: "height: 25px; width: 25px; background-color: red;border-radius: 50%; display: inline-block;"
                 }, []);
               }
 
-              svg = createElement('svg', {
-                viewBox: "0 0 100 100"
-              }, [circle]);
               thbody = [createElement('td', {
                 scope: "col"
-              }, [svg]), createElement('td', {
+              }, [circle]), createElement('td', {
                 scope: "col"
               }, [element.brand.toString()]), createElement('td', {
                 scope: "col"
@@ -908,18 +903,18 @@ function _soat() {
               trbody.push(createElement('tr', {}, thbody));
             }
 
-            tbody = createElement('tbody', {
-              "class": 'table-striped'
-            }, trbody);
+            tbody = createElement('tbody', {}, trbody);
             table = createElement('table', {
-              "class": 'table'
+              "class": 'table table-striped'
             }, [thead, tbody]);
+            title = createElement('div', {
+              "class": 'w-100 bg-dark h1 text-center text-light p-2'
+            }, ['SOAT LIST']);
             container = createElement('div', {
               id: 'container',
               "class": 'container'
-            }, [table]);
+            }, [title, table]);
             console.log(container);
-            $app.innerHTML = '';
             $app.appendChild(container);
 
           case 22:

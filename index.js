@@ -19,20 +19,21 @@ async function soat() {
         createElement('th', { scope: "col" }, ['Valid From']),
         createElement('th', { scope: "col" }, ['Valid until'])]
     const trhead = createElement('tr', {}, thhead)
-    const thead = createElement('thead', {}, [trhead])
+    const thead = createElement('thead', {class:"thead-dark"}, [trhead])
     let trbody = [];
     for (let i = 0; i < json.vehicles.length; i++) {
         const element = json.vehicles[i];
         let from = new Date(parseInt(element.soatValidFrom,10))
         let until = new Date(parseInt(element.soatValidUntil,10))
+        console.log(from);
+        console.log(until)
         let circle;
-        if (from.getDay==until.getDay && from.getMonth==until.getMonth && from.getFullYear-until.getFullYear==-1) {
-            circle= createElement('circle', { fill: "green",cx:50,cy:50,r:50}, [])
+        if (from.getDate()==until.getDate() && from.getMonth()==until.getMonth() && from.getFullYear()-until.getFullYear()==-1) {
+            circle= createElement('span', { style: "height: 25px; width: 25px; background-color: green;border-radius: 50%; display: inline-block;"}, [])
         } else {
-            circle= createElement('circle', { fill: "red",cx:50,cy:50,r:50}, [])
+            circle= createElement('span', { style: "height: 25px; width: 25px; background-color: red;border-radius: 50%; display: inline-block;"}, [])
         }
-        let svg = createElement('svg', { viewBox: "0 0 100 100" }, [circle])
-        thbody = [createElement('td', { scope: "col" }, [svg]),
+        thbody = [createElement('td', { scope: "col" }, [circle]),
             createElement('td', { scope: "col" }, [element.brand.toString()]),
             createElement('td', { scope: "col" }, [element.licensePlate]),
             createElement('td', { scope: "col" }, [`${from.getDay()}-${from.getMonth()}-${from.getFullYear()}`]),
@@ -40,13 +41,12 @@ async function soat() {
         ]
         trbody.push(createElement('tr', {  }, thbody))
     }
-    tbody = createElement('tbody', { class: 'table-striped' }, trbody)
+    tbody = createElement('tbody', { }, trbody)
 
-    const table = createElement('table', { class: 'table' }, [thead, tbody])
-
-    const container = createElement('div', { id: 'container', class: 'container' }, [table])
+    const table = createElement('table', { class: 'table table-striped' }, [thead, tbody])
+    const title = createElement('div', { class: 'w-100 bg-dark h1 text-center text-light p-2' }, ['SOAT LIST'])
+    const container = createElement('div', { id: 'container', class: 'container' }, [title,table])
     console.log(container)
-    $app.innerHTML = '';
     $app.appendChild(container);
 }
 soat()
