@@ -35,8 +35,8 @@ async function soat() {
         thbody = [createElement('td', { scope: "col" }, [svg]),
             createElement('td', { scope: "col" }, [element.brand.toString()]),
             createElement('td', { scope: "col" }, [element.licensePlate]),
-            createElement('td', { scope: "col" }, [`${from.getDay}-${from.getMonth}-${from.getFullYear}`]),
-            createElement('td', { scope: "col" }, [])
+            createElement('td', { scope: "col" }, [`${from.getDay()}-${from.getMonth()}-${from.getFullYear()}`]),
+            createElement('td', { scope: "col" }, [`${until.getDay()}-${until.getMonth()}-${until.getFullYear()}`])
         ]
         trbody.push(createElement('tr', {  }, thbody))
     }
